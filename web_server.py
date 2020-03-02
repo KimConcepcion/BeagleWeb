@@ -15,7 +15,7 @@ import os
 #########################################################################
 PORT = 8888
 HOST = "192.168.1.34"
-DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "web")
+DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "Frontend/web")
 
 
 class IndexHandler(tornado.web.RequestHandler):
