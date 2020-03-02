@@ -25,7 +25,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 class InternalSystemHandler(tornado.web.RequestHandler):
     def get(self):
-        target_file = os.path.join(DIR_PATH, "test.html")
+        target_file = os.path.join(DIR_PATH, "InternalSystem.html")
         self.render(target_file)
 
 def make_app():
@@ -35,11 +35,12 @@ def make_app():
         (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH})
     ])
 
+
 #########################################################################
 #                           M A I N
 #########################################################################
 if __name__ == "__main__":
     app = make_app()
-    app.default_host
+    tornado.httpserver.HTTPServer(app)    
     app.listen(PORT, HOST)
     tornado.ioloop.IOLoop.current().start()
