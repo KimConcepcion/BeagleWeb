@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html lang="eng">
+
+<html ng-app="beagleapp">
 <head>
-	<title>MonitorSystem</title>
+	<title>Home Server</title>
+	<meta lang="eng">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width = device-width, initial-scale = 1">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="icon" type="image/x-icon" href="web/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-<body>
-	<div class="container">
-		<div class="page-header"><h1 align="center">Monitor System</h1></div>
-		<div class="jumbotron" style="background-color: lightgray;">
-			<div class="text-center">
-				<div class="btn-group btn-group-lg" role="group">
-					<button class="btn btn-primary btn-lg";">Home 
-						<span class="glyphicon glyphicon-home"> </span> </button>
-					<button class="btn btn-primary btn-lg"">Internal System Metrics 
-						<span class=" glyphicon glyphicon-eye-open"> </span> </button>
-					<button class="btn btn-primary btn-lg">Room Metrics 
-						<span class="glyphicon glyphicon-bed"> </span> </button>
-					<button class="btn btn-primary btn-lg">To Do
-						<span class="glyphicon glyphicon-th-list"> </span> </button>
-				</div>
-			</div>
+<body ng-controller="MainViewController" ng-cloak>
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+			<ul class="nav navbar-nav">
+				<li>
+					<a ng-href="#" role="button" aria-haspopup="true" aria-expanded="false"><h3>Home</h3></a>
+				</li>
+				<li>
+					<a ng-href="#/systemstatus" role="button" aria-haspopup="true" aria-expanded="false"><h3>System Status</h3></a>
+				</li>
+				<li>
+					<a ng-href="#/about" role="button" aria-haspopup="true" aria-expanded="false"><h3>About</h3></a>
+				</li>
+			</ul>
 		</div>
-		<img src="images/img_1.jpg" id="Tokyo" class="img-responsive img-rounded">
-		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div style="padding-top: 86px;" ng-view></div>
 	</div>
 
+	<!-- Local js scripts. -->
+	<script src="js/angularjs/angular.js"></script>
+	<script src="js/angularjs/angular-route.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+
+	<!-- External js scripts. -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
