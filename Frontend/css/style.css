@@ -1,2 +1,5 @@
-@import "bootstrap.css";
+/* @import "bootstrap.min.css"; */
 
+svg {
+    border: 1px solid black;
+}

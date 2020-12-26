@@ -8,7 +8,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width = device-width, initial-scale = 1">
 	<link rel="icon" type="image/x-icon" href="web/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body ng-controller="MainViewController" ng-cloak>
@@ -19,7 +22,7 @@
 		<div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
 			<ul class="nav navbar-nav">
 				<li>
-					<a ng-href="#" role="button" aria-haspopup="true" aria-expanded="false"><h3>Home</h3></a>
+					<a ng-href="#" role="button" aria-haspopup="true" aria-expanded="false"><h3><span class="glyphicon glyphicon-home"></span></h3></a>
 				</li>
 				<li>
 					<a ng-href="#/systemstatus" role="button" aria-haspopup="true" aria-expanded="false"><h3>System Status</h3></a>
@@ -36,6 +39,8 @@
 	</div>
 
 	<!-- Local js scripts. -->
+	<!-- <script src="js/bootstrap/bootstrap.min.js"></script> -->
+	<script src="js/util/plotly.min.js"></script>
 	<script src="js/angularjs/angular.js"></script>
 	<script src="js/angularjs/angular-route.js"></script>
 	<script src="js/app.js"></script>

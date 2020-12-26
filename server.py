@@ -7,7 +7,6 @@ import tornado.websocket
 import tornado.httpserver
 import os
 
-
 # --------------------------------------------------------------------- #
 # Constants
 # --------------------------------------------------------------------- #
@@ -15,7 +14,6 @@ PORT = 8888
 HOST = 'localhost'
 # HOST = "192.168.1.34"
 DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "Frontend")
-
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -27,7 +25,6 @@ def make_app():
         (r"/", IndexHandler),
         (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH})
     ])
-
 
 # --------------------------------------------------------------------- #
 # Main
