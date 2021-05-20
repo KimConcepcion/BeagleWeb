@@ -29,14 +29,15 @@ def make_app():
 # --------------------------------------------------------------------- #
 if __name__ == "__main__":
     # Get ip and port from cmd line args
-    if len(sys.argv < 3):
+    if len(sys.argv) < 3:
+        print('Usage: server.py <ip_addr> <port_number> ')
+    else:
         HOST = sys.argv[1]
         PORT = sys.argv[2]
-
+        
         app = make_app()
         tornado.httpserver.HTTPServer(app)    
         app.listen(PORT, HOST)
+        
+        print('Server is listening on port: ', PORT)
         tornado.ioloop.IOLoop.current().start()
-    
-    else:
-        print('Usage: server.py <ip_addr> <port_number> ')
