@@ -5,14 +5,12 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 import tornado.httpserver
+import sys
 import os
 
 # --------------------------------------------------------------------- #
 # Constants
 # --------------------------------------------------------------------- #
-PORT = 8888
-HOST = 'localhost'
-# HOST = "192.168.1.34"
 DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "Frontend")
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -30,7 +28,15 @@ def make_app():
 # Main
 # --------------------------------------------------------------------- #
 if __name__ == "__main__":
-    app = make_app()
-    tornado.httpserver.HTTPServer(app)    
-    app.listen(PORT, HOST)
-    tornado.ioloop.IOLoop.current().start()
+    # Get ip and port from cmd line args
+    if len(sys.argv < 3):
+        HOST = sys.argv[1]
+        PORT = sys.argv[2]
+
+        app = make_app()
+        tornado.httpserver.HTTPServer(app)    
+        app.listen(PORT, HOST)
+        tornado.ioloop.IOLoop.current().start()
+    
+    else:
+        print('Usage: server.py <ip_addr> <port_number> ')
