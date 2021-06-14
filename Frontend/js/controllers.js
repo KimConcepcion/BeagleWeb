@@ -1,8 +1,11 @@
+/* ============ MainView Controller ============ */
 app.controller('MainViewController', function($scope, $route, $interval) {
     console.log("Main View Controller starting.");
 
 });
 
+
+/* ============ SystemStatus Controller ============ */
 app.controller('SystemStatusController', function($scope, $route, $interval) {
     console.log("System Status Controller starting.");
 
@@ -105,4 +108,25 @@ app.controller('SystemStatusController', function($scope, $route, $interval) {
     // Install interval method.
     var updatePeriod = 1000;
     var pollDataPromise = $interval(pollData, updatePeriod);
+});
+
+
+/* ============ PRU Controller ============ */
+app.controller('PRUController', function($scope, $route, $interval) {
+    console.log("PRU Controller starting.");
+
+});
+
+
+/* ============ HomeSensors Controller ============ */
+app.controller('HomeSensorsController', function($scope, $route, $interval) {
+    console.log("HomeSensors Controller starting.");
+
+});
+
+
+/* ============ Network Controller ============ */
+app.controller('NetworkController', function($scope, $route, $interval) {
+    console.log("Network Controller starting.");
+
 });

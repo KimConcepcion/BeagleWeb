@@ -8,9 +8,24 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'SystemStatusController',
             templateUrl: 'web/SystemStatus.html',
         })
+        .when('/pru',
+        {
+            controller: 'PRUController',
+            templateUrl: 'web/PRU.html',
+        })
+        .when('/homesensors',
+        {
+            controller: 'HomeSensorsController',
+            templateUrl: 'web/HomeSensors.html',
+        })
+        .when('/network',
+        {
+            controller: 'NetworkController',
+            templateUrl: 'web/Network.html',
+        })
         .when('/about',
         {
-            controller: 'MainViewController',
+            controller: 'MainController',
             templateUrl: 'web/About.html',
         })
         .otherwise({ redirectTo: '/' });
