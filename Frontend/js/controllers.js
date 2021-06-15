@@ -1,12 +1,12 @@
 /* ============ MainView Controller ============ */
-app.controller('MainViewController', function($scope, $route, $interval) {
+app.controller('MainViewController', function($scope, $route, $interval, BeagleInterface) {
     console.log("Main View Controller starting.");
 
 });
 
 
 /* ============ SystemStatus Controller ============ */
-app.controller('SystemStatusController', function($scope, $route, $interval) {
+app.controller('SystemStatusController', function($scope, $route, $interval, BeagleInterface) {
     console.log("System Status Controller starting.");
 
     $scope.updateCnt = 0;
@@ -112,21 +112,21 @@ app.controller('SystemStatusController', function($scope, $route, $interval) {
 
 
 /* ============ PRU Controller ============ */
-app.controller('PRUController', function($scope, $route, $interval) {
+app.controller('PRUController', function($scope, $route, $interval, BeagleInterface) {
     console.log("PRU Controller starting.");
 
 });
 
 
 /* ============ HomeSensors Controller ============ */
-app.controller('HomeSensorsController', function($scope, $route, $interval) {
+app.controller('HomeSensorsController', function($scope, $route, $interval, BeagleInterface) {
     console.log("HomeSensors Controller starting.");
 
 });
 
 
 /* ============ Network Controller ============ */
-app.controller('NetworkController', function($scope, $route, $interval) {
+app.controller('NetworkController', function($scope, $route, $interval, BeagleInterface) {
     console.log("Network Controller starting.");
 
 });

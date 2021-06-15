@@ -3,13 +3,14 @@
 # --------------------------------------------------------------------- #
 import tornado.ioloop
 import tornado.web
-import tornado.websocket
 import tornado.httpserver
 import sys
 import os
 
+from Backend.websocket_handler import BeagleWsHandler
+
 # --------------------------------------------------------------------- #
-# Constants
+# Data
 # --------------------------------------------------------------------- #
 DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "Frontend")
 
@@ -21,7 +22,8 @@ class IndexHandler(tornado.web.RequestHandler):
 def make_app():
     return tornado.web.Application([
         (r"/", IndexHandler),
-        (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH})
+        (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH}),
+        (r"/websocket", BeagleWsHandler)
     ])
 
 # --------------------------------------------------------------------- #
@@ -35,9 +37,9 @@ if __name__ == "__main__":
         HOST = sys.argv[1]
         PORT = sys.argv[2]
         
+        print('HOST: %s is listening on PORT: %s' % (HOST, PORT))
+
         app = make_app()
         tornado.httpserver.HTTPServer(app)    
         app.listen(PORT, HOST)
-        
-        print('Server is listening on port: ', PORT)
         tornado.ioloop.IOLoop.current().start()
