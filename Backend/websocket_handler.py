@@ -14,4 +14,4 @@ class BeagleWsHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):
         print('Message received: ', message)
-    
+        self.write_message(message)

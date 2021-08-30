@@ -1,5 +1,5 @@
 /* ============ MainView Controller ============ */
-app.controller('MainViewController', function($scope, $route, $interval, BeagleInterface) {
+app.controller('MainController', function($scope, $route, $interval, BeagleInterface) {
     console.log("Main View Controller starting.");
 
 });

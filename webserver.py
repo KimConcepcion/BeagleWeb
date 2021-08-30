@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------- #
-# Imports
+# External imports
 # --------------------------------------------------------------------- #
 import tornado.ioloop
 import tornado.web
@@ -7,11 +7,13 @@ import tornado.httpserver
 import sys
 import os
 
+# --------------------------------------------------------------------- #
+# Local imports
+# --------------------------------------------------------------------- #
 from Backend.websocket_handler import BeagleWsHandler
 
-# --------------------------------------------------------------------- #
-# Data
-# --------------------------------------------------------------------- #
+
+# Root dir for web files
 DIR_PATH = os.path.join( os.path.dirname(os.path.realpath(__file__)),  "Frontend")
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -21,25 +23,26 @@ class IndexHandler(tornado.web.RequestHandler):
 
 def make_app():
     return tornado.web.Application([
+        (r"/websocket", BeagleWsHandler),
         (r"/", IndexHandler),
-        (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH}),
-        (r"/websocket", BeagleWsHandler)
+        (r"/(.*)", tornado.web.StaticFileHandler, {'path': DIR_PATH})
     ])
 
 # --------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------- #
 if __name__ == "__main__":
+    HOST = '10.20.0.10'
+    PORT = '8888'
+
     # Get ip and port from cmd line args
-    if len(sys.argv) < 3:
-        print('Usage: server.py <ip_addr> <port_number> ')
-    else:
+    if not len(sys.argv) < 3:
         HOST = sys.argv[1]
         PORT = sys.argv[2]
-        
-        print('HOST: %s is listening on PORT: %s' % (HOST, PORT))
-
-        app = make_app()
-        tornado.httpserver.HTTPServer(app)    
-        app.listen(PORT, HOST)
-        tornado.ioloop.IOLoop.current().start()
+    
+    print('HOST: %s is listening on PORT: %s' % (HOST, PORT))
+    
+    app = make_app()
+    tornado.httpserver.HTTPServer(app)    
+    app.listen(PORT, HOST)
+    tornado.ioloop.IOLoop.current().start()
