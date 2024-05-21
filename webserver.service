@@ -1,0 +1,18 @@
+[Unit]
+Description=Web server
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=/usr/bin/python3 -u /mnt/sd_card/projects/beagle_web/webserver.py
+WorkingDirectory=/mnt/sd_card/projects/beagle_web
+User=kim
+StartLimitBurst=2
+# Restart, but not more than once every 30s (for testing purposes)
+StartLimitInterval=30
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
