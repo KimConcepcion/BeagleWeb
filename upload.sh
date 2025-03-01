@@ -2,7 +2,6 @@
 
 echo "(1) Uploading web files STARTED..."
 
-# scp -r Backend Frontend server.py kim@beagle:~/TornadoEmbeddedLinux
-scp -r Backend Frontend webserver.py kim@10.20.0.10:~/TornadoEmbeddedLinux
+scp -r src docker kim@beagle:~/projects/BeagleWeb
 
 echo "(2) Uploading web files DONE..."

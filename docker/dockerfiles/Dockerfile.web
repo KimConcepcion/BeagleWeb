@@ -1,0 +1,8 @@
+# FROM python:3.5.3
+FROM python:3.14-rc-slim-bookworm
+
+# Setup pip & pip modules
+COPY requirements.txt .
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade setuptools
+RUN python3 -m pip install -r requirements.txt

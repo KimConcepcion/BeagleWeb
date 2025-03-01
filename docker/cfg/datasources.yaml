@@ -1,0 +1,39 @@
+---
+# Configuration file version
+apiVersion: 1
+
+deleteDatasources:
+  - name: beagle-ctrlid-influxdb
+  - name: beagle-ops-influxdb
+
+datasources:
+- name: beagle-ctrlid-influxdb
+  type: influxdb
+  url: http://localhost:8086
+  editable: true
+  isDefault: true
+  basicAuth: false
+  user: $DOCKER_INFLUXDB_INIT_USERNAME
+  database: ctrlid
+  jsonData:
+    dbName: ctrlid
+    httpMode: GET
+    organization: $DOCKER_INFLUXDB_INIT_ORG
+    timeInterval: 1s
+  secureJsonData:
+    password: $DOCKER_INFLUXDB_INIT_PASSWORD
+- name: beagle-ops-influxdb
+  type: influxdb
+  url: http://localhost:8086
+  editable: true
+  isDefault: false
+  basicAuth: false
+  user: $DOCKER_INFLUXDB_INIT_USERNAME
+  database: ops-bucket
+  jsonData:
+    dbName: ops-bucket
+    httpMode: GET
+    organization: $DOCKER_INFLUXDB_INIT_ORG
+    timeInterval: 1s
+  secureJsonData:
+    password: $DOCKER_INFLUXDB_INIT_PASSWORD

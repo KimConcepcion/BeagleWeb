@@ -32,7 +32,7 @@ def make_app():
 # Main
 # --------------------------------------------------------------------- #
 if __name__ == "__main__":
-    HOST = '10.20.0.10'
+    HOST = '192.168.1.10'
     PORT = '8888'
 
     # Get ip and port from cmd line args

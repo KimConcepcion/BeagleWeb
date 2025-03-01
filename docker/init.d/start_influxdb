@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+# Buckets to create
+INTERNAL_BUCKET=internal
+
+# Create token & buckets
+influx auth create --org $DOCKER_INFLUXDB_INIT_ORG --all-access
+influx bucket create -n $INTERNAL_BUCKET -o $DOCKER_INFLUXDB_INIT_ORG -r 0

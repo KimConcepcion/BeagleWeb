@@ -5,8 +5,8 @@ app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/systemstatus',
         {
-            controller: 'SystemStatusController',
-            templateUrl: 'web/SystemStatus.html',
+            controller: 'systemMonitorController',
+            templateUrl: 'web/systemView.html',
         })
         .when('/pru',
         {

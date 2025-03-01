@@ -1,0 +1,104 @@
+---
+networks:
+   beagle-network:
+      driver: "bridge"
+
+volumes:
+   portainer_data:
+   influxdb_data:
+   grafana_data:
+
+services:
+   # ----- Portainer
+   portainer:
+      container_name: portainer
+      image: portainer/portainer-ce:2.20.3
+      env_file:
+         - .env
+      volumes:
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/timezone:/etc/timezone:ro
+         - /var/run/docker.sock:/var/run/docker.sock
+         - portainer_data:/data
+      networks:
+         - beagle-network
+      ports:
+         - "9001:9000"
+      restart: always
+      logging:
+         driver: "json-file"
+         options:
+            max-size: "10m"
+            max-file: "3"
+            compress: "true"
+   
+   # ----- Web server
+   web_server:
+      container_name: web_server
+      image: webserver:UNSPECIFIED
+      env_file:
+         - .env
+      build:
+         context: ../src
+         dockerfile: ../docker/dockerfiles/Dockerfile.web
+         network: host
+      volumes:
+         - ../src:/src
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/timezone:/etc/timezone:ro
+      # command: ["/bin/bash", "/apps/start_webserver"]
+      restart: always
+      logging:
+         driver: "json-file"
+         options:
+            max-size: "10m"
+            max-file: "3"
+            compress: "true"
+      network_mode: host
+      depends_on:
+         - portainer
+   
+   # ----- Influxdb
+   influxdb:
+      container_name: influxdb
+      image: influxdb:2.7.10-alpine
+      env_file:
+         - .env
+      volumes:
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/timezone:/etc/timezone:ro
+         - /etc/influxdb2:/etc/influxdb2
+         - influxdb_data:/var/lib/influxdb2
+         - ./cfg/influx-configs.txt:/etc/influxdb2/influx-configs
+         - ./init.d/start_influxdb:/docker-entrypoint-initdb.d/start_influxdb.sh
+      restart: unless-stopped
+      network_mode: host
+      logging:
+         driver: "json-file"
+         options:
+            max-size: "10m"
+            max-file: "3"
+            compress: "true"
+
+   # ----- Grafana
+   grafana:
+      container_name: grafana
+      image: grafana/grafana-enterprise:latest
+      env_file:
+         - .env
+      volumes:
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/timezone:/etc/timezone:ro
+         - ./cfg/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+         - ./cfg/grafana.ini:/etc/grafana/grafana.ini
+         - grafana_data:/var/lib/grafana
+      restart: unless-stopped
+      network_mode: host
+      depends_on:
+         - influxdb
+      logging:
+         driver: "json-file"
+         options:
+            max-size: "10m"
+            max-file: "3"
+            compress: "true"

@@ -1,0 +1,2 @@
+# Declare all files to use LF line endings on checkout.
+* text eol=lf
